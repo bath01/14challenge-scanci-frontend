@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { QrCodeRequest, QrCodeResponse, QrCodeType } from '../models';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +17,11 @@ export class QrCode {
     return this.http.post<QrCodeResponse>(this.apiUrl+'/generate', request);
   }
 
+  // Gère les deux formats : tableau brut ou réponse paginée Spring (Page<>)
   getHistory(): Observable<QrCodeResponse[]>{
-    return this.http.get<QrCodeResponse[]>(this.apiUrl+'/history');
+    return this.http.get<any>(this.apiUrl+'/history').pipe(
+      map(data => Array.isArray(data) ? data : data.content ?? [])
+    );
   }
 
   getHistoryByType(type: string): Observable<QrCodeResponse[]>{
