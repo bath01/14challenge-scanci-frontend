@@ -43,24 +43,26 @@ export class QrCode {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+  // Télécharge l'image PNG via son URL
   downloadPng(qrCode: QrCodeResponse): void {
-    const link = document.createElement('a');
-    link.href = `data:image/png;base64,${qrCode.pngBase64}`;
-    link.download = `qrcode-${qrCode.contentType}-${qrCode.id}.png`;
-    link.click();
+    this.downloadFile(qrCode.pngUrl, `qrcode-${qrCode.contentType}-${qrCode.id}.png`);
   }
 
-
+  // Télécharge l'image SVG via son URL
   downloadSvg(qrCode: QrCodeResponse): void {
-    const blob = new Blob([qrCode.svgBase64], { type: 'image/svg+xml' });
+    this.downloadFile(qrCode.svgUrl, `qrcode-${qrCode.contentType}-${qrCode.id}.svg`);
+  }
 
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `qrcode-${qrCode.contentType}-${qrCode.id}.svg`;
-    link.click();
-
-    URL.revokeObjectURL(url);
+  // Récupère le fichier distant et déclenche le téléchargement
+  private downloadFile(url: string, filename: string): void {
+    this.http.get(url, { responseType: 'blob' }).subscribe(blob => {
+      const blobUrl = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = filename;
+      link.click();
+      URL.revokeObjectURL(blobUrl);
+    });
   }
 }
 

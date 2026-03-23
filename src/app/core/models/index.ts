@@ -36,8 +36,8 @@ export interface QrCodeResponse {
   foregroundColor: string;
   backgroundColor : string;
   size :number;
-  pngBase64: string;
-  svgBase64: string;
+  pngUrl: string;
+  svgUrl: string;
   createdAt : string;
 }
 

@@ -56,7 +56,7 @@
           <!-- Mini QR -->
           <div class="qr-thumb-wrap">
             <img
-              [src]="'data:image/png;base64,' + qr.pngBase64"
+              [src]="qr.pngUrl"
               [alt]="'QR Code ' + qr.contentType"
               class="qr-thumb" />
           </div>

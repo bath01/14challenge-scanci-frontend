@@ -39,7 +39,6 @@ export class History implements OnInit {
     this.qrCodeService.getHistory().subscribe({
       next: (data) => {
         this.history = data;
-
         this.filteredHistory = data;
         this.isLoading = false;
       },
