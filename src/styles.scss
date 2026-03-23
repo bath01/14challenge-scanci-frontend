@@ -1,1 +1,137 @@
-/* You can add global styles to this file, and also import other style files */
+/* ——— Import Google Font ——— */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+/* ============================================
+   Thème sombre (par défaut)
+   ============================================ */
+:root,
+[data-theme="dark"] {
+  --ci-orange: #FF8C00;
+  --ci-orange-light: #FFa040;
+  --ci-green: #009E49;
+
+  --color-bg: #08080C;
+  --color-surface: #101014;
+  --color-card: #151519;
+  --color-card-hover: #1A1A20;
+  --color-border: #1F1F28;
+  --color-border-light: #2A2A35;
+  --color-input-bg: #0C0C10;
+
+  --color-text-primary: #F0EDE6;
+  --color-text-secondary: #8A8A95;
+  --color-text-dim: #505058;
+
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --color-white-alpha-02: rgba(255, 255, 255, 0.02);
+  --color-white-alpha-04: rgba(255, 255, 255, 0.04);
+  --color-white-alpha-06: rgba(255, 255, 255, 0.06);
+  --color-white-alpha-08: rgba(255, 255, 255, 0.08);
+
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.25);
+  --shadow-card-hover: 0 12px 32px rgba(0, 0, 0, 0.3);
+  --shadow-card-deep: 0 4px 40px rgba(0, 0, 0, 0.3);
+  --shadow-glow-orange: 0 0 20px rgba(255, 140, 0, 0.1);
+  --shadow-btn-orange: 0 4px 20px rgba(255, 140, 0, 0.25);
+  --shadow-btn-orange-hover: 0 6px 28px rgba(255, 140, 0, 0.35);
+
+  --navbar-bg: rgba(8, 8, 12, 0.85);
+  --navbar-border: rgba(255, 255, 255, 0.04);
+
+  --gradient-radial-orange: radial-gradient(circle, rgba(255, 140, 0, 0.06) 0%, transparent 70%);
+  --gradient-radial-green: radial-gradient(circle, rgba(0, 158, 73, 0.05) 0%, transparent 70%);
+  --gradient-line-orange: linear-gradient(90deg, transparent, rgba(255, 140, 0, 0.3), transparent);
+  --gradient-line-green: linear-gradient(90deg, transparent, rgba(0, 158, 73, 0.3), transparent);
+}
+
+/* ============================================
+   Thème clair
+   ============================================ */
+[data-theme="light"] {
+  --ci-orange: #E07800;
+  --ci-orange-light: #FF9A30;
+  --ci-green: #008A40;
+
+  --color-bg: #F5F5F7;
+  --color-surface: #EEEEEF;
+  --color-card: #FFFFFF;
+  --color-card-hover: #FAFAFA;
+  --color-border: #E0E0E4;
+  --color-border-light: #D0D0D6;
+  --color-input-bg: #F0F0F3;
+
+  --color-text-primary: #1A1A1F;
+  --color-text-secondary: #6B6B78;
+  --color-text-dim: #9E9EA8;
+
+  --color-overlay: rgba(0, 0, 0, 0.15);
+  --color-white-alpha-02: rgba(0, 0, 0, 0.015);
+  --color-white-alpha-04: rgba(0, 0, 0, 0.03);
+  --color-white-alpha-06: rgba(0, 0, 0, 0.04);
+  --color-white-alpha-08: rgba(0, 0, 0, 0.05);
+
+  --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.06), 0 2px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-card-deep: 0 4px 32px rgba(0, 0, 0, 0.08);
+  --shadow-glow-orange: 0 0 20px rgba(224, 120, 0, 0.08);
+  --shadow-btn-orange: 0 4px 16px rgba(224, 120, 0, 0.2);
+  --shadow-btn-orange-hover: 0 6px 24px rgba(224, 120, 0, 0.3);
+
+  --navbar-bg: rgba(245, 245, 247, 0.88);
+  --navbar-border: rgba(0, 0, 0, 0.06);
+
+  --gradient-radial-orange: radial-gradient(circle, rgba(224, 120, 0, 0.06) 0%, transparent 70%);
+  --gradient-radial-green: radial-gradient(circle, rgba(0, 138, 64, 0.05) 0%, transparent 70%);
+  --gradient-line-orange: linear-gradient(90deg, transparent, rgba(224, 120, 0, 0.25), transparent);
+  --gradient-line-green: linear-gradient(90deg, transparent, rgba(0, 138, 64, 0.25), transparent);
+}
+
+/* ——— Reset & Base ——— */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ——— Scrollbar custom ——— */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-light);
+  border-radius: 3px;
+
+  &:hover {
+    background: var(--color-text-dim);
+  }
+}
+
+/* ——— Selection texte ——— */
+::selection {
+  background: rgba(255, 140, 0, 0.2);
+  color: var(--color-text-primary);
+}
+
+/* ——— Focus visible ——— */
+:focus-visible {
+  outline: 2px solid var(--ci-orange);
+  outline-offset: 2px;
+}

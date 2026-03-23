@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { RegisterRequest } from '../../../core/models';
+import { Theme } from '../../../core/services/theme';
 
 @Component({
   selector: 'app-register',
@@ -27,8 +28,17 @@ export class Register {
 
   constructor (
     private authServie: Auth,
-    private router: Router
+    private router: Router,
+    private themeService: Theme
   ){}
+
+  isDark(): boolean {
+    return this.themeService.isDark();
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggle();
+  }
 
 
   passwordsMatch(): boolean{

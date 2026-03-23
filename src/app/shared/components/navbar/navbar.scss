@@ -1,27 +1,21 @@
-$ci-orange: #FF8C00;
-$ci-green: #009E49;
-$border: #2A2A35;
-$text-p: #F0EDE6;
-$text-s: #777777;
-$text-dim: #444444;
-
 // ——— Navbar ———
 .navbar-ci {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(11, 11, 16, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid $border;
+  background: var(--navbar-bg);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid var(--navbar-border);
   font-family: 'DM Sans', sans-serif;
+  transition: background 0.3s, border-color 0.3s;
 }
 
 .navbar-inner {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
-  height: 56px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,63 +29,61 @@ $text-dim: #444444;
   gap: 10px;
   text-decoration: none;
   cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover { opacity: 0.85; }
 }
 
 .flag-bar {
   display: flex;
-  width: 32px;
+  width: 28px;
   height: 3px;
   border-radius: 2px;
   overflow: hidden;
 
   .flag-seg {
     flex: 1;
-    &.orange { background: $ci-orange; }
+    &.orange { background: #FF8C00; }
     &.white  { background: #FFFFFF; }
-    &.green  { background: $ci-green; }
+    &.green  { background: #009E49; }
   }
 }
 
 .brand-name {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 800;
-  color: $text-p;
+  color: var(--color-text-primary);
   letter-spacing: -0.5px;
 
-  .accent { color: $ci-orange; }
-}
-
-.brand-version {
-  font-size: 9px;
-  padding: 2px 8px;
-  border-radius: 4px;
-  background: #1A1A22;
-  border: 1px solid $border;
-  color: $text-dim;
+  .accent { color: var(--ci-orange); }
 }
 
 // ——— Nav links ———
 .nav-links {
   display: flex;
-  gap: 24px;
+  gap: 6px;
   align-items: center;
 }
 
 .nav-link {
-  font-size: 12px;
-  font-weight: 400;
-  color: $text-s;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
   text-decoration: none;
-  padding-bottom: 3px;
-  border-bottom: 2px solid transparent;
+  padding: 6px 14px;
+  border-radius: 8px;
   transition: all 0.2s;
   cursor: pointer;
 
-  &.active,
   &:hover {
-    color: $ci-orange;
-    font-weight: 700;
-    border-bottom-color: $ci-orange;
+    color: var(--color-text-primary);
+    background: var(--color-white-alpha-04);
+  }
+
+  &.active {
+    color: var(--ci-orange);
+    font-weight: 600;
+    background: rgba(255, 140, 0, 0.08);
   }
 }
 
@@ -99,20 +91,43 @@ $text-dim: #444444;
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+}
+
+.btn-theme {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-white-alpha-02);
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  padding: 0;
+  line-height: 1;
+
+  &:hover {
+    background: var(--color-white-alpha-06);
+    border-color: var(--color-border-light);
+    transform: rotate(15deg);
+  }
 }
 
 .nav-user {
-  font-size: 12px;
-  color: $text-s;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
 }
 
 .btn-logout {
   padding: 7px 16px;
   border-radius: 8px;
-  border: 1px solid $border;
-  background: transparent;
-  color: $text-s;
+  border: 1px solid var(--color-border);
+  background: var(--color-white-alpha-02);
+  color: var(--color-text-secondary);
   font-size: 12px;
   font-weight: 500;
   font-family: 'DM Sans', sans-serif;
@@ -120,9 +135,9 @@ $text-dim: #444444;
   transition: all 0.2s;
 
   &:hover {
-    background: rgba(#E53935, 0.1);
-    border-color: rgba(#E53935, 0.3);
-    color: #E53935;
+    background: rgba(229, 57, 53, 0.08);
+    border-color: rgba(229, 57, 53, 0.25);
+    color: #EF5350;
   }
 }
 
@@ -130,61 +145,81 @@ $text-dim: #444444;
 .hamburger {
   display: none;
   background: none;
-  border: 1px solid $border;
-  color: $text-p;
-  width: 34px;
-  height: 34px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  width: 36px;
+  height: 36px;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--color-white-alpha-04);
+  }
 }
 
 // ——— Menu mobile ———
 .mobile-menu {
   display: flex;
   flex-direction: column;
-  padding: 12px 24px 20px;
-  border-top: 1px solid $border;
-  gap: 4px;
+  padding: 8px 20px 20px;
+  border-top: 1px solid var(--color-border);
+  gap: 2px;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .mobile-link {
-  padding: 12px 8px;
+  padding: 12px 12px;
   font-size: 14px;
   font-weight: 500;
-  color: $text-s;
+  color: var(--color-text-secondary);
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 10px;
   transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  width: 100%;
+  text-align: left;
 
   &.active,
   &:hover {
-    color: $ci-orange;
-    background: rgba($ci-orange, 0.08);
+    color: var(--ci-orange);
+    background: rgba(255, 140, 0, 0.06);
   }
 }
 
 .mobile-divider {
   height: 1px;
-  background: $border;
+  background: var(--color-border);
   margin: 8px 0;
 }
 
 .mobile-user {
   font-size: 13px;
-  color: $text-s;
-  padding: 8px;
+  color: var(--color-text-secondary);
+  padding: 8px 12px;
 }
 
 .btn-logout-mobile {
   margin-top: 4px;
   padding: 10px 16px;
   border-radius: 10px;
-  border: 1px solid $border;
+  border: 1px solid var(--color-border);
   background: transparent;
-  color: $text-s;
+  color: var(--color-text-secondary);
   font-size: 13px;
   font-weight: 500;
   font-family: 'DM Sans', sans-serif;
@@ -193,24 +228,15 @@ $text-dim: #444444;
   text-align: left;
 
   &:hover {
-    background: rgba(#E53935, 0.1);
-    border-color: rgba(#E53935, 0.3);
-    color: #E53935;
+    background: rgba(229, 57, 53, 0.08);
+    border-color: rgba(229, 57, 53, 0.25);
+    color: #EF5350;
   }
 }
 
 // ——— Responsive ———
 @media (max-width: 768px) {
-  .navbar-inner {
-    padding: 0 16px;
-  }
-
-  .nav-links,
-  .nav-right {
-    display: none;
-  }
-
-  .hamburger {
-    display: flex;
-  }
+  .navbar-inner { padding: 0 16px; }
+  .nav-links, .nav-right { display: none; }
+  .hamburger { display: flex; }
 }

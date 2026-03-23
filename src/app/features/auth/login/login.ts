@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { LoginRequest } from '../../../core/models';
 import { Auth } from '../../../core/services/auth';
+import { Theme } from '../../../core/services/theme';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +28,17 @@ export class Login {
   constructor(
     private authService : Auth,
     private router : Router,
-    private route : ActivatedRoute
+    private route : ActivatedRoute,
+    private themeService: Theme
   ){}
+
+  isDark(): boolean {
+    return this.themeService.isDark();
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggle();
+  }
 
   onSubmit(): void {
     this.errorMessage = '',

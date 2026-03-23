@@ -1,9 +1,12 @@
+@if (showLoader) {
+  <app-loader></app-loader>
+}
+
 @if (isLoggedIn()) {
   <app-navbar></app-navbar>
 }
 
 <!-- RouterOutlet = emplacement où Angular injecte le composant de la route active -->
-<!-- ex: si on est sur /generator → GeneratorComponent s'affiche ici -->
 <main>
   <router-outlet></router-outlet>
 </main>

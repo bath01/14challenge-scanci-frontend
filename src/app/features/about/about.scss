@@ -1,17 +1,8 @@
-$ci-orange: #FF8C00;
-$ci-green: #009E49;
-$card: #1A1A22;
-$border: #2A2A35;
-$text-p: #F0EDE6;
-$text-s: #777777;
-$text-dim: #444444;
-$input-bg: #111116;
-
 // ——— Container ———
 .about-container {
-  max-width: 700px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 40px 40px 60px;
+  padding: 44px 40px 80px;
   font-family: 'DM Sans', sans-serif;
   display: flex;
   flex-direction: column;
@@ -20,43 +11,62 @@ $input-bg: #111116;
 
 // ——— Cards ———
 .about-card {
-  background: $card;
+  background: var(--color-card);
   border-radius: 20px;
-  border: 1px solid $border;
-  padding: 32px;
+  border: 1px solid var(--color-border);
+  padding: 34px;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.3s, background 0.3s;
+
+  &:hover { border-color: var(--color-border-light); }
 }
 
 // ——— Main card ———
 .about-main {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: var(--gradient-line-orange);
+  }
+
   .flag-bar {
     display: flex;
     width: 56px;
     height: 4px;
     border-radius: 2px;
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 
     .flag-seg {
       flex: 1;
-      &.orange { background: $ci-orange; }
+      &.orange { background: #FF8C00; }
       &.white  { background: #FFFFFF; }
-      &.green  { background: $ci-green; }
+      &.green  { background: #009E49; }
     }
   }
 }
 
 .about-title {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 800;
-  color: $ci-orange;
-  margin: 0 0 16px;
+  margin: 0 0 18px;
   letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--ci-orange), var(--ci-orange-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .about-desc {
   font-size: 15px;
   line-height: 1.8;
-  color: $text-s;
+  color: var(--color-text-secondary);
   margin: 0 0 12px;
 
   &:last-child { margin: 0; }
@@ -71,30 +81,38 @@ $input-bg: #111116;
 
 .stat-card {
   text-align: center;
-  padding: 20px 12px;
-  border-radius: 14px;
-  background: $card;
-  border: 1px solid $border;
+  padding: 22px 12px;
+  border-radius: 16px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s;
+
+  &:hover {
+    border-color: var(--color-border-light);
+    transform: translateY(-2px);
+  }
 }
 
 .stat-value {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 800;
   margin: 0 0 4px;
 
-  &.orange { color: $ci-orange; }
-  &.green  { color: $ci-green; }
+  &.orange { color: var(--ci-orange); }
+  &.green  { color: var(--ci-green); }
 }
 
 .stat-label {
   font-size: 10px;
-  color: $text-s;
+  color: var(--color-text-secondary);
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-weight: 500;
 }
 
-// ——— Grid équipe + stack ———
+// ——— Grid equipe + stack ———
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -104,78 +122,90 @@ $input-bg: #111116;
 // ——— Section label ———
 .section-label {
   font-size: 10px;
-  color: $text-dim;
-  margin: 0 0 14px;
+  color: var(--color-text-dim);
+  margin: 0 0 16px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
-// ——— Équipe ———
+// ——— Equipe ———
 .member-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 8px;
+  border-radius: 12px;
+  transition: background 0.2s;
 
+  &:hover { background: var(--color-white-alpha-02); }
   &.last { margin-bottom: 0; }
 }
 
 .member-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, $ci-orange, $ci-green);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #FF8C00, #009E49);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFF;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(255, 140, 0, 0.2);
 }
 
 .member-name {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  color: $text-p;
+  color: var(--color-text-primary);
   margin: 0;
 }
 
 .member-role {
-  font-size: 10px;
-  color: $text-s;
-  margin: 0;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  margin: 2px 0 0;
 }
 
 // ——— Stack ———
 .tech-item {
-  padding: 10px 14px;
-  border-radius: 8px;
-  background: $input-bg;
-  border: 1px solid $border;
+  padding: 11px 16px;
+  border-radius: 10px;
+  background: var(--color-input-bg);
+  border: 1px solid var(--color-border);
   margin-bottom: 6px;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: rgba(0, 158, 73, 0.2);
+    background: rgba(0, 158, 73, 0.03);
+  }
 
   &.last { margin-bottom: 0; }
 }
 
 .tech-label {
-  font-size: 12px;
-  font-weight: 500;
-  color: $ci-green;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ci-green);
 }
 
 // ——— Footer ———
 .about-footer {
   text-align: center;
-  padding: 16px;
-  border-radius: 12px;
-  background: $card;
-  border: 1px solid $border;
+  padding: 18px;
+  border-radius: 14px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
 
   p {
-    font-size: 12px;
-    color: $text-s;
+    font-size: 13px;
+    color: var(--color-text-secondary);
     margin: 0;
   }
 }
@@ -183,17 +213,17 @@ $input-bg: #111116;
 .footer-link {
   font-weight: 600;
   text-decoration: none;
+  transition: opacity 0.2s;
 
-  &.orange { color: $ci-orange; }
-  &.green  { color: $ci-green; }
+  &.orange { color: var(--ci-orange); }
+  &.green  { color: var(--ci-green); }
 
-  &:hover { text-decoration: underline; }
+  &:hover { opacity: 0.8; }
 }
 
-// ——— Responsive ———
 @media (max-width: 768px) {
-  .about-container { padding: 24px 16px; }
+  .about-container { padding: 24px 16px 60px; }
   .about-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-title { font-size: 22px; }
+  .about-title { font-size: 24px; }
 }

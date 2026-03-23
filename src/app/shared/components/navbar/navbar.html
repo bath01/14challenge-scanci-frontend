@@ -9,7 +9,6 @@
         <div class="flag-seg green"></div>
       </div>
       <span class="brand-name">Scan<span class="accent">CI</span></span>
-      <span class="brand-version">v1.0</span>
     </a>
 
     <!-- ——— Nav links (desktop) ——— -->
@@ -31,8 +30,11 @@
       </a>
     </div>
 
-    <!-- ——— Droite : user + logout ——— -->
+    <!-- ——— Droite : theme + user + logout ——— -->
     <div class="nav-right">
+      <button class="btn-theme" (click)="toggleTheme()" [attr.aria-label]="isDark() ? 'Mode clair' : 'Mode sombre'">
+        {{ isDark() ? '☀️' : '🌙' }}
+      </button>
       <span class="nav-user">
         👤 {{ getUserName() }}
       </span>
@@ -69,6 +71,10 @@
         (click)="menuOpen = false">
         ℹ️ À propos
       </a>
+      <div class="mobile-divider"></div>
+      <button class="mobile-link" (click)="toggleTheme()">
+        {{ isDark() ? '☀️ Mode clair' : '🌙 Mode sombre' }}
+      </button>
       <div class="mobile-divider"></div>
       <span class="mobile-user">👤 {{ getUserName() }}</span>
       <button class="btn-logout-mobile" (click)="logout()">

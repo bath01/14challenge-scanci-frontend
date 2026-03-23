@@ -1,38 +1,55 @@
-$ci-orange: #FF8C00;
-$ci-green: #009E49;
-$dark-bg: #0B0B10;
-$card: #1A1A22;
-$border: #2A2A35;
-$text-p: #F0EDE6;
-$text-s: #777777;
-$text-dim: #444444;
-$input-bg: #111116;
-
 // ——— Page ———
 .register-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: $dark-bg;
+  background: var(--color-bg);
   font-family: 'DM Sans', sans-serif;
   padding: 24px 16px;
+  position: relative;
+  transition: background 0.3s;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 500px;
+    background: var(--gradient-radial-green);
+    pointer-events: none;
+  }
 }
 
 // ——— Card ———
 .register-card {
   width: 100%;
   max-width: 420px;
-  background: $card;
-  border-radius: 20px;
-  border: 1px solid $border;
-  padding: 40px 36px;
+  background: var(--color-card);
+  border-radius: 24px;
+  border: 1px solid var(--color-border);
+  padding: 44px 40px;
+  position: relative;
+  box-shadow: var(--shadow-card-deep);
+  transition: background 0.3s, border-color 0.3s;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: var(--gradient-line-green);
+  }
 }
 
 // ——— Logo ———
 .register-logo {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
 .flag-bar {
@@ -41,119 +58,144 @@ $input-bg: #111116;
   height: 4px;
   border-radius: 2px;
   overflow: hidden;
-  margin: 0 auto 16px;
+  margin: 0 auto 18px;
 
   .flag-seg {
     flex: 1;
-    &.orange { background: $ci-orange; }
+    &.orange { background: #FF8C00; }
     &.white  { background: #FFFFFF; }
-    &.green  { background: $ci-green; }
+    &.green  { background: #009E49; }
   }
 }
 
 .brand-name {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 800;
-  color: $text-p;
+  color: var(--color-text-primary);
   margin: 0 0 8px;
   letter-spacing: -0.5px;
 
-  .accent { color: $ci-orange; }
+  .accent {
+    background: linear-gradient(135deg, var(--ci-orange), var(--ci-orange-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 .brand-sub {
-  font-size: 13px;
-  color: $text-s;
+  font-size: 14px;
+  color: var(--color-text-secondary);
   margin: 0;
 }
 
 // ——— Error ———
 .error-box {
   padding: 12px 16px;
-  border-radius: 10px;
-  background: rgba(#E53935, 0.1);
-  border: 1px solid rgba(#E53935, 0.3);
-  color: #E53935;
-  font-size: 12px;
+  border-radius: 12px;
+  background: rgba(229, 57, 53, 0.08);
+  border: 1px solid rgba(229, 57, 53, 0.2);
+  color: #EF5350;
+  font-size: 13px;
   margin-bottom: 20px;
+  font-weight: 500;
 }
 
 // ——— Fields ———
 .field-group {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .field-label {
   font-size: 11px;
-  color: $text-s;
-  font-weight: 500;
+  color: var(--color-text-secondary);
+  font-weight: 600;
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 7px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
 .field-input {
   width: 100%;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1px solid $border;
-  background: $input-bg;
-  font-size: 13px;
-  color: $text-p;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-input-bg);
+  font-size: 14px;
+  color: var(--color-text-primary);
   outline: none;
   font-family: 'DM Sans', sans-serif;
   box-sizing: border-box;
-  transition: border 0.2s;
+  transition: all 0.25s;
 
-  &:focus { border-color: $ci-orange; }
-  &::placeholder { color: $text-dim; }
+  &:focus {
+    border-color: rgba(255, 140, 0, 0.5);
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.08);
+  }
 
-  &.input-error   { border-color: #E53935; }
-  &.input-success { border-color: $ci-green; }
+  &::placeholder { color: var(--color-text-dim); }
+
+  &.input-error {
+    border-color: rgba(229, 57, 53, 0.5);
+    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.08);
+  }
+
+  &.input-success {
+    border-color: rgba(0, 158, 73, 0.5);
+    box-shadow: 0 0 0 3px rgba(0, 158, 73, 0.08);
+  }
 }
 
 .field-hint {
   font-size: 11px;
-  margin: 6px 0 0;
+  margin: 7px 0 0;
+  font-weight: 500;
 
-  &.error   { color: #E53935; }
-  &.success { color: $ci-green; }
+  &.error   { color: #EF5350; }
+  &.success { color: var(--ci-green); }
 }
 
 // ——— Button ———
 .btn-register {
   width: 100%;
-  padding: 13px 0;
-  border-radius: 12px;
+  padding: 14px 0;
+  border-radius: 14px;
   border: none;
   cursor: pointer;
-  background: linear-gradient(135deg, $ci-orange, #FFa040);
+  background: linear-gradient(135deg, var(--ci-orange), var(--ci-orange-light));
   color: #FFF;
   font-size: 14px;
   font-weight: 700;
   font-family: 'DM Sans', sans-serif;
-  box-shadow: 0 4px 16px rgba($ci-orange, 0.3);
-  transition: all 0.2s;
+  box-shadow: var(--shadow-btn-orange);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
 
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
   }
+
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
 
   &:hover:not(:disabled) {
-    filter: brightness(1.05);
+    box-shadow: var(--shadow-btn-orange-hover);
     transform: translateY(-1px);
+    &::after { opacity: 1; }
   }
 
-  &:active:not(:disabled) {
-    transform: scale(0.98);
-  }
+  &:active:not(:disabled) { transform: scale(0.98); }
 
   .btn-spinner {
     width: 14px;
@@ -174,21 +216,46 @@ $input-bg: #111116;
 .register-footer {
   text-align: center;
   font-size: 13px;
-  color: $text-s;
-  margin: 20px 0 0;
+  color: var(--color-text-secondary);
+  margin: 24px 0 0;
 }
 
 .register-link {
-  color: $ci-orange;
+  color: var(--ci-orange);
   font-weight: 700;
   text-decoration: none;
+  transition: opacity 0.2s;
 
-  &:hover { text-decoration: underline; }
+  &:hover { opacity: 0.8; }
 }
 
-// ——— Responsive ———
-@media (max-width: 480px) {
-  .register-card {
-    padding: 32px 24px;
+// ——— Bouton theme flottant ———
+.btn-theme-float {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-card);
+  z-index: 10;
+  padding: 0;
+  line-height: 1;
+
+  &:hover {
+    transform: rotate(15deg) scale(1.05);
+    border-color: var(--color-border-light);
   }
+}
+
+@media (max-width: 480px) {
+  .register-card { padding: 36px 24px; border-radius: 20px; }
 }
